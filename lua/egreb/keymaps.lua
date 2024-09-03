@@ -1,5 +1,12 @@
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- [[ Buffer ]]
+-- vim.keymap.set('n', '<leader>x', ':bd<CR>', { desc = '[C]lose buffer' })
+-- [[ Close buffers ]]
+vim.keymap.set('n', '<S-q>', '<cmd>Bdelete!<CR>', { desc = '[C]lose [B]uffer' })
+-- [[ Quit windows ]]
+vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = '[Q]uit [W]indow' })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
@@ -28,3 +35,20 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- [[ Moving lines up and down ]]
+vim.api.nvim_set_keymap('n', '∆', ':m .+1<CR>==', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '˚', ':m .-2<CR>==', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '∆', '<Esc>:m .+1<CR>==gi', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '˚', '<Esc>:m .-2<CR>==gi', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('x', '∆', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('x', '˚', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+
+-- [[ Navigte between vim and tmux ]]
+vim.api.nvim_set_keymap('n', '<c-k>', ':wincmd k<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<c-j>', ':wincmd j<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<c-h>', ':wincmd h<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<c-l>', ':wincmd l<CR>', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<c-x>', ':bp<bar>sp<bar>bn<bar>bd<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<c-X>', ':bd<CR>', { noremap = true, silent = true })
