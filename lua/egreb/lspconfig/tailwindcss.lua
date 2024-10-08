@@ -12,7 +12,7 @@ return {
     'astro',
   },
   init_options = {
-    userLanguages = {
+    includeLanguages = {
       templ = 'html',
     },
   },

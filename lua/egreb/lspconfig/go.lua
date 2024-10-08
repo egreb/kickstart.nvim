@@ -1,6 +1,11 @@
 return {
   cmd = { 'gopls' },
   settings = {
+    Lua = {
+      completion = {
+        callSnippet = 'Replace',
+      },
+    },
     gopls = {
       analyses = {
         nilness = true,
