@@ -128,7 +128,11 @@ return { -- LSP Configuration & Plugins
     local servers = {
       dockerls = require 'egreb.lspconfig.docker',
       astro = require 'egreb.lspconfig.astro',
-      biome = {},
+      biome = {
+        root_dir = function(...)
+          return require('lspconfig.util').root_pattern '.git'(...)
+        end,
+      },
       html = { filetypes = { 'html', 'twig', 'hbs', 'tmpl', 'templ', 'ejs', 'mustache', 'liquid' } },
       tailwindcss = require 'egreb.lspconfig.tailwindcss',
       gopls = require 'egreb.lspconfig.go',
