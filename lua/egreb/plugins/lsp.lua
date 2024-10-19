@@ -151,7 +151,7 @@ return { -- LSP Configuration & Plugins
       tailwindcss = require 'egreb.lspconfig.tailwindcss',
       gopls = require 'egreb.lspconfig.go',
       emmet_language_server = require 'egreb.lspconfig.emmet',
-      tsserver = {
+      ts_ls = {
         root_dir = function(...)
           return require('lspconfig.util').root_pattern '.git'(...)
         end,
