@@ -36,14 +36,6 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- [[ Moving lines up and down ]]
-vim.api.nvim_set_keymap('n', '∆', ':m .+1<CR>==', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '˚', ':m .-2<CR>==', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '∆', '<Esc>:m .+1<CR>==gi', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '˚', '<Esc>:m .-2<CR>==gi', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('x', '∆', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('x', '˚', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
-
 -- [[ Navigate between vim and tmux ]]
 vim.api.nvim_set_keymap('n', '<c-k>', ':wincmd k<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<c-j>', ':wincmd j<CR>', { noremap = true, silent = true })

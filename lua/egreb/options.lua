@@ -97,3 +97,6 @@ vim.opt.pumheight = 10 -- pop up menu height
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldenable = false
+
+local statusline_ascii = ''
+vim.opt.statusline = '%#Normal#' .. statusline_ascii .. '%='

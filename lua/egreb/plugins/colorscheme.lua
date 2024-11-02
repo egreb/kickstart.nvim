@@ -24,6 +24,7 @@ return {
   },
   enabled = true,
   config = function()
+    require('tokyonight').setup {}
     vim.cmd [[colorscheme tokyonight]]
   end,
 }
