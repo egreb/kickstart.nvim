@@ -22,12 +22,12 @@ end
 
 opts.final = function()
   opt.completeopt = { 'menuone', 'noselect', 'noinsert' }
-  opt.wildmenu = true
-  opt.pumheight = 10
+  -- opt.wildmenu = true
+  -- opt.pumheight = 10
   opt.ignorecase = true
   opt.smartcase = true
   opt.timeout = false
-  opt.updatetime = 400
+  opt.updatetime = 300
   opt.confirm = false
   opt.equalalways = false
   opt.splitbelow = true

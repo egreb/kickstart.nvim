@@ -14,6 +14,8 @@ vim.g.have_nerd_font = true
 
 -- Make line numbers default
 vim.opt.number = true
+vim.opt.relativenumber = true
+
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
 -- vim.opt.relativenumber = true
@@ -87,8 +89,7 @@ vim.opt_local.softtabstop = 2 -- number of spaces that <Tab> uses while editing
 vim.opt_local.expandtab = true -- convert tab to spaces
 vim.opt.termguicolors = true -- termguicolors
 vim.opt.swapfile = false -- Disable annyoing swapfile
-vim.lsp.inlay_hint.enable() -- inlay-hints
-vim.opt.shell = '/bin/zsh'
+vim.opt.shell = '/bin/fish'
 vim.opt.showcmd = false
 vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
 vim.opt.pumheight = 10 -- pop up menu height
@@ -100,3 +101,5 @@ vim.opt.foldenable = false
 
 local statusline_ascii = ''
 vim.opt.statusline = '%#Normal#' .. statusline_ascii .. '%='
+
+vim.opt.conceallevel = 0 -- don't hide json strings, whatever that means

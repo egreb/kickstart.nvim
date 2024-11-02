@@ -1,14 +1,12 @@
 return {
   'stevearc/oil.nvim',
+  ---@module 'oil'
+  ---@type oil.SetupOpts
   opts = {},
-  -- Optional dependencies
-  dependencies = {},
+  dependencies = { { 'echasnovski/mini.icons', opts = {} } },
   config = function()
     require('oil').setup {
       default_file_explorer = true,
-      columns = {
-        'icon',
-      },
       skip_confirm_for_simple_edits = true,
       view_options = {
         -- Show files and directories that start with "."
