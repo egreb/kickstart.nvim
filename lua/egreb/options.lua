@@ -42,7 +42,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+-- vim.opt.signcolumn = 'yes'
 
 -- Decrease update time
 vim.opt.updatetime = 250
@@ -102,4 +102,4 @@ vim.opt.foldenable = false
 local statusline_ascii = ''
 vim.opt.statusline = '%#Normal#' .. statusline_ascii .. '%='
 
-vim.opt.conceallevel = 0 -- don't hide json strings, whatever that means
+-- vim.opt.conceallevel = 0 -- don't hide json strings, whatever that means
