@@ -3,12 +3,12 @@ return { -- Autoformat
   lazy = false,
   keys = {
     {
-      '<leader>f',
+      '<leader>fb',
       function()
         require('conform').format { async = true, lsp_fallback = true }
       end,
       mode = '',
-      desc = '[F]ormat buffer',
+      desc = '[F]ormat [B]uffer',
     },
   },
   opts = {
@@ -19,6 +19,7 @@ return { -- Autoformat
       -- languages here or re-enable it for the disabled ones.
       local disable_filetypes = { c = true, cpp = true }
       return {
+        async = true,
         timeout_ms = 500,
         lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
       }
