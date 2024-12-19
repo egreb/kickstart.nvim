@@ -58,7 +58,14 @@ return { -- Fuzzy Finder (files, lsp, etc)
           hidden = true,
         },
         find_files = {
+          cwd_only = true,
           hidden = true,
+        },
+        live_grep = {
+          additional_args = { '--hidden' },
+        },
+        grep_string = {
+          additional_args = { '--hidden' },
         },
       },
       extensions = {
