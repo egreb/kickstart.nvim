@@ -3,7 +3,7 @@ return {
   ---@module 'oil'
   ---@type oil.SetupOpts
   opts = {},
-  dependencies = { { 'echasnovski/mini.icons', opts = {} } },
+  dependencies = { { 'echasnovski/mini.icons' } },
   config = function()
     require('oil').setup {
       default_file_explorer = true,
