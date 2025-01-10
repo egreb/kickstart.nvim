@@ -7,10 +7,10 @@ return {
     mc.setup()
     local set = vim.keymap.set
 
-    set({ 'n', 'v' }, '<up>', function()
+    set({ 'n', 'v' }, '<M-D>', function()
       mc.lineAddCursor(-1)
     end)
-    set({ 'n', 'v' }, '<down>', function()
+    set({ 'n', 'v' }, '<M-d>', function()
       mc.lineAddCursor(1)
     end)
     set({ 'n', 'v' }, '<leader><up>', function()
@@ -34,7 +34,7 @@ return {
       mc.matchSkipCursor(-1)
     end)
 
-    set('n', '<esc>', function()
+    set('n', '<M-q>', function()
       if not mc.cursorsEnabled() then
         mc.enableCursors()
       elseif mc.hasCursors() then

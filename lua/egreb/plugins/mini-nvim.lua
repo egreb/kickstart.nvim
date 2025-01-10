@@ -9,6 +9,7 @@ return { -- Collection of various small independent plugins/modules
     --  - va)  - [V]isually select [A]round [)]paren
     --  - yinq - [Y]ank [I]nside [N]ext [']quote
     --  - ci'  - [C]hange [I]nside [']quote
+    require('mini.icons').setup()
     require('mini.ai').setup { n_lines = 500 }
 
     -- Add/delete/replace surroundings (brackets, quotes, etc.)
@@ -18,6 +19,7 @@ return { -- Collection of various small independent plugins/modules
     require('mini.surround').setup()
     require('mini.indentscope').setup()
     require('mini.move').setup()
+    require('mini.statusline').setup()
 
     -- Simple and easy statusline.
     -- local statusline = require 'mini.statusline'
