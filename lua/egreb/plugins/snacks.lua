@@ -126,6 +126,13 @@ return {
       end,
       desc = 'LSP Symbols',
     },
+    {
+      '<leader>sc',
+      function()
+        Snacks.picker.resume()
+      end,
+      desc = 'Resume',
+    },
   },
   opts = {
     picker = {
