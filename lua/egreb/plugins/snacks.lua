@@ -46,8 +46,105 @@ return {
       end,
       '[T]oggle [T]erminal',
     },
+    -- Picker keymaps
+    {
+      '<leader><leader>',
+      function()
+        Snacks.picker.buffers()
+      end,
+      desc = 'Buffers',
+    },
+    {
+      '<leader>sg',
+      function()
+        Snacks.picker.grep {
+          exclude = { 'node_modules/' },
+        }
+      end,
+      desc = 'Grep',
+    },
+    {
+      '<c-P>',
+      function()
+        Snacks.picker.files {
+          exclude = { 'node_modules' },
+        }
+      end,
+      desc = 'Find Files',
+    },
+    {
+      '<leader>s.',
+      function()
+        Snacks.picker.recent {
+          filter = {
+            cwd = true,
+          },
+        }
+      end,
+      desc = 'Recent',
+    },
+    {
+      '<leader>sr"',
+      function()
+        Snacks.picker.registers()
+      end,
+      desc = 'Registers',
+    },
+    {
+      'gd',
+      function()
+        Snacks.picker.lsp_definitions()
+      end,
+      desc = 'Goto Definition',
+    },
+    {
+      'gr',
+      function()
+        Snacks.picker.lsp_references()
+      end,
+      nowait = true,
+      desc = 'References',
+    },
+    {
+      'gI',
+      function()
+        Snacks.picker.lsp_implementations()
+      end,
+      desc = 'Goto Implementation',
+    },
+    {
+      'gy',
+      function()
+        Snacks.picker.lsp_type_definitions()
+      end,
+      desc = 'Goto T[y]pe Definition',
+    },
+    {
+      '<leader>ss',
+      function()
+        Snacks.picker.lsp_symbols()
+      end,
+      desc = 'LSP Symbols',
+    },
   },
   opts = {
+    picker = {
+      sources = {},
+      prompt = ' ',
+      ui_select = true,
+      layout = {
+        cycle = true,
+        --- Use the default layout or vertical if the window is too narrow
+        preset = function()
+          return vim.o.columns >= 120 and 'default' or 'vertical'
+        end,
+      },
+      formatters = {
+        file = {
+          filename_first = true, -- display filename before the file path
+        },
+      },
+    },
     notifier = { enabled = true },
     statuscolumn = { enabled = true },
     scratch = { enabled = true },
