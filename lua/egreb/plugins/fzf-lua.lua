@@ -2,6 +2,8 @@
 return {
   'ibhagwan/fzf-lua',
   enabled = true,
+  -- only used for the notes system atm
+  ft = 'markdown',
   -- optional for icon support
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
