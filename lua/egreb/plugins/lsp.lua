@@ -19,7 +19,7 @@ return {
         gopls = {},
         tailwindcss = {},
         biome = {},
-        emmet = {},
+        emmet_language_server = {},
       },
     },
     config = function(_, opts)
@@ -30,12 +30,10 @@ return {
 
         -- TODO: Clean this up
         if server == 'tailwindcss' then
-          local tailwind_config = vim.tbl_extend('force', require 'egreb.lspconfig.tailwindcss',
-            { capabilities = capabilities })
+          local tailwind_config = vim.tbl_extend('force', require 'egreb.lspconfig.tailwindcss', { capabilities = capabilities })
           lspconfig[server].setup(tailwind_config)
         elseif server == 'ts_ls' then
-          local tsls_config = vim.tbl_extend('force', require 'egreb.lspconfig.typescript',
-            { capabilities = capabilities })
+          local tsls_config = vim.tbl_extend('force', require 'egreb.lspconfig.typescript', { capabilities = capabilities })
           lspconfig[server].setup(tsls_config)
         elseif server == 'biome' then
           local biome_config = vim.tbl_extend('force', require 'egreb.lspconfig.biome', { capabilities = capabilities })
@@ -43,7 +41,7 @@ return {
         elseif server == 'gopls' then
           local go_config = vim.tbl_extend('force', require 'egreb.lspconfig.go', { capabilities = capabilities })
           lspconfig[server].setup(go_config)
-        elseif server == 'emmet' then
+        elseif server == 'emmet_language_server' then
           local emmet_config = vim.tbl_extend('force', require 'egreb.lspconfig.emmet', { capabilities = capabilities })
           lspconfig[server].setup(emmet_config)
         else
@@ -68,27 +66,27 @@ return {
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
           -- map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-          map('gd', require('fzf-lua').lsp_definitions, '[G]oto [D]efinition')
+          -- map('gd', require('fzf-lua').lsp_definitions, '[G]oto [D]efinition')
 
           -- Find references for the word under your cursor.
           -- map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-          map('gr', require('fzf-lua').lsp_references, '[G]oto [R]eferences')
+          -- map('gr', require('fzf-lua').lsp_references, '[G]oto [R]eferences')
 
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
           -- map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-          map('gI', require('fzf-lua').lsp_implementations, '[G]oto [I]mplementation')
+          -- map('gI', require('fzf-lua').lsp_implementations, '[G]oto [I]mplementation')
 
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
           -- map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-          map('<leader>D', require('fzf-lua').lsp_typedefs, 'Type [D]efinition')
+          -- map('<leader>D', require('fzf-lua').lsp_typedefs, 'Type [D]efinition')
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
           -- map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-          map('<leader>ds', require('fzf-lua').lsp_document_symbols, '[D]ocument [S]ymbols')
+          -- map('<leader>ds', require('fzf-lua').lsp_document_symbols, '[D]ocument [S]ymbols')
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
