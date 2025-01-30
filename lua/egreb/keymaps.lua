@@ -4,8 +4,6 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- vim.keymap.set('n', '<leader>x', ':bd<CR>', { desc = '[C]lose buffer' })
 -- [[ Close buffers ]]
 vim.keymap.set('n', '<C-x>', '<cmd>bd!<CR>', { desc = '[C]lose [B]uffer' })
--- [[ Quit windows ]]
-vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = '[Q]uit [W]indow' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
