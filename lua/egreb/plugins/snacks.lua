@@ -133,8 +133,28 @@ return {
       end,
       desc = 'Resume',
     },
+    {
+      '<leader>sd',
+      function()
+        Snacks.picker.diagnostics {
+          filter = {
+            cwd = true,
+          },
+        }
+      end,
+      desc = 'Workspace Diagnostics',
+    },
   },
   opts = {
+    input = {
+      enabled = true,
+      icon = ' ',
+      icon_hl = 'SnacksInputIcon',
+      icon_pos = 'left',
+      prompt_pos = 'title',
+      win = { style = 'input' },
+      expand = true,
+    },
     picker = {
       sources = {},
       prompt = ' ',
