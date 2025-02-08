@@ -68,6 +68,7 @@ return {
       function()
         Snacks.picker.files {
           exclude = { 'node_modules' },
+          hidden = true,
         }
       end,
       desc = 'Find Files',
@@ -79,6 +80,7 @@ return {
           filter = {
             cwd = true,
           },
+          hidden = true,
         }
       end,
       desc = 'Recent',
@@ -96,6 +98,14 @@ return {
         Snacks.picker.lsp_definitions()
       end,
       desc = 'Goto Definition',
+    },
+    {
+      '<leader>sw',
+      function()
+        Snacks.picker.grep_word()
+      end,
+      nowait = true,
+      desc = 'Grep Word',
     },
     {
       'gr',
@@ -122,7 +132,7 @@ return {
     {
       '<leader>ss',
       function()
-        Snacks.picker.lsp_symbols()
+        Snacks.picker.lsp_symbols { layout = { preset = 'vscode', preview = 'main' } }
       end,
       desc = 'LSP Symbols',
     },
@@ -160,11 +170,8 @@ return {
       prompt = ' ',
       ui_select = true,
       layout = {
-        cycle = true,
-        --- Use the default layout or vertical if the window is too narrow
-        preset = function()
-          return vim.o.columns >= 120 and 'default' or 'vertical'
-        end,
+        preview = 'main',
+        preset = 'ivy',
       },
       formatters = {
         file = {

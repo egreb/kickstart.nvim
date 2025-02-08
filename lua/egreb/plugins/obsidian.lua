@@ -2,6 +2,7 @@ local l = require 'egreb.utils.location'
 
 return {
   'epwalsh/obsidian.nvim',
+  enabled = false,
   version = '*', -- recommended, use latest release instead of latest commit
   lazy = false,
   -- ft = 'markdown',

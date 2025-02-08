@@ -16,17 +16,12 @@ return { -- Autoformat
     format_on_save = function(bufnr)
       local disable_filetypes = { c = true, cpp = true }
       return {
-        timeout_ms = 1000,
+        timeout_ms = 1500,
         lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
       }
     end,
     formatters_by_ft = {
       lua = { 'stylua' },
-      -- Conform can also run multiple formatters sequentially
-      -- python = { "isort", "black" },
-      --
-      -- You can use a sub-list to tell conform to run *until* a formatter
-      -- is found.
       css = { 'prettier' },
       json = { 'prettier' },
       javascript = { 'prettier' },
