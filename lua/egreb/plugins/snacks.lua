@@ -170,12 +170,15 @@ return {
       prompt = ' ',
       ui_select = true,
       layout = {
-        preview = 'main',
-        preset = 'ivy',
+        cycle = true,
+        preset = function()
+          return vim.o.columns >= 120 and 'default' or 'vertical'
+        end,
       },
       formatters = {
         file = {
           filename_first = true, -- display filename before the file path
+          truncate = 120,
         },
       },
     },

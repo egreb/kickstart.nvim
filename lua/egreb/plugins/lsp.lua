@@ -20,6 +20,7 @@ return {
         tailwindcss = {},
         biome = {},
         emmet_language_server = {},
+        harper_ls = {},
       },
     },
     config = function(_, opts)
@@ -30,11 +31,9 @@ return {
 
         -- TODO: Clean this up
         if server == 'tailwindcss' then
-          local tailwind_config = vim.tbl_extend('force', require 'egreb.lspconfig.tailwindcss', { capabilities = capabilities })
+          local tailwind_config = vim.tbl_extend('force', require 'egreb.lspconfig.tailwindcss',
+            { capabilities = capabilities })
           lspconfig[server].setup(tailwind_config)
-        elseif server == 'ts_ls' then
-          local tsls_config = vim.tbl_extend('force', require 'egreb.lspconfig.typescript', { capabilities = capabilities })
-          lspconfig[server].setup(tsls_config)
         elseif server == 'biome' then
           local biome_config = vim.tbl_extend('force', require 'egreb.lspconfig.biome', { capabilities = capabilities })
           lspconfig[server].setup(biome_config)

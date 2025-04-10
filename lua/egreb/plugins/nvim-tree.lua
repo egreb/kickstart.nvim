@@ -15,5 +15,6 @@ return {
         width = 40,
       },
     }
+    vim.keymap.set('n', '<leader>B', ':NvimTreeToggle<CR>', { noremap = true })
   end,
 }
