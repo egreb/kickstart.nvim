@@ -1,10 +1,6 @@
 return {
-  {
-    'navarasu/onedark.nvim',
-    priority = 1000, -- Ensure it loads first
-    lazy = false,
-    config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
-  },
+  'wtfox/jellybeans.nvim',
+  lazy = false,
+  priority = 1000,
+  opts = { transparent = false, flat_ui = false },
 }
