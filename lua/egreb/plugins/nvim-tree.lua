@@ -14,6 +14,9 @@ return {
         side = 'right',
         width = 40,
       },
+      update_focused_file = {
+        enable = true,
+      },
     }
     vim.keymap.set('n', '<leader>B', ':NvimTreeToggle<CR>', { noremap = true })
   end,

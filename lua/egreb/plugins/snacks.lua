@@ -59,6 +59,7 @@ return {
       function()
         Snacks.picker.grep {
           exclude = { 'node_modules/' },
+          regex = false,
         }
       end,
       desc = 'Grep',
@@ -182,7 +183,7 @@ return {
         },
       },
     },
-    notifier = { enabled = true },
+    notifier = { enabled = false },
     statuscolumn = { enabled = true },
     scratch = { enabled = true },
     lazygit = { enabled = true },
