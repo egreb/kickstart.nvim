@@ -79,25 +79,25 @@ vim.opt.hlsearch = true
 -- Sets how neovim will display certain whitespace in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
-vim.opt.inccommand = 'split'   -- Preview substitutions live, as you type!
-vim.opt.cursorline = true      -- Show which line your cursor is on
-vim.opt.scrolloff = 10         -- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
+vim.opt.cursorline = true -- Show which line your cursor is on
+vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.sidescrolloff = 10
-vim.opt_local.tabstop = 2      -- insert to spaces for a tab
-vim.opt_local.shiftwidth = 2   -- the number of spaces inserted for each indentation
-vim.opt_local.softtabstop = 2  -- number of spaces that <Tab> uses while editing
+vim.opt_local.tabstop = 2 -- insert to spaces for a tab
+vim.opt_local.shiftwidth = 2 -- the number of spaces inserted for each indentation
+vim.opt_local.softtabstop = 2 -- number of spaces that <Tab> uses while editing
 vim.opt_local.expandtab = true -- convert tab to spaces
-vim.opt.termguicolors = true   -- termguicolors
-vim.opt.swapfile = false       -- Disable annyoing swapfile
+vim.opt.termguicolors = true -- termguicolors
+vim.opt.swapfile = false -- Disable annyoing swapfile
 vim.opt.shell = '/bin/zsh'
 vim.opt.showcmd = false
-vim.opt.cmdheight = 1  -- more space in the neovim command line for displaying messages
+vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
 vim.opt.pumheight = 10 -- pop up menu height
 
 -- folding
-vim.opt.foldmethod = 'expr'
+vim.opt.foldmethod = 'indent'
+vim.opt.foldlevel = 100
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.opt.foldenable = false
 
 local statusline_ascii = ''
 vim.opt.statusline = '%#Normal#' .. statusline_ascii .. '%='
