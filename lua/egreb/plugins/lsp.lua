@@ -93,29 +93,27 @@ return {
       -- Diagnostic Config
       -- See :help vim.diagnostic.Opts
       vim.diagnostic.config {
-        severity_sort = true,
-        float = { border = 'rounded', source = 'if_many' },
-        underline = { severity = vim.diagnostic.severity.ERROR },
-        signs = vim.g.have_nerd_font and {
+        virtual_text = {
+          enabled = true,
+          prefix = function(diagnostic)
+            if diagnostic.severity == vim.diagnostic.severity.ERROR then
+              return '🭰󰅚 '
+            elseif diagnostic.severity == vim.diagnostic.severity.WARN then
+              return '🭰▲ '
+            else
+              return '🭰• '
+            end
+          end,
+          suffix = '🭵',
+        },
+        underline = true,
+        signs = {
           text = {
             [vim.diagnostic.severity.ERROR] = '󰅚 ',
             [vim.diagnostic.severity.WARN] = '󰀪 ',
             [vim.diagnostic.severity.INFO] = '󰋽 ',
             [vim.diagnostic.severity.HINT] = '󰌶 ',
           },
-        } or {},
-        virtual_text = {
-          source = 'if_many',
-          spacing = 2,
-          format = function(diagnostic)
-            local diagnostic_message = {
-              [vim.diagnostic.severity.ERROR] = diagnostic.message,
-              [vim.diagnostic.severity.WARN] = diagnostic.message,
-              [vim.diagnostic.severity.INFO] = diagnostic.message,
-              [vim.diagnostic.severity.HINT] = diagnostic.message,
-            }
-            return diagnostic_message[diagnostic.severity]
-          end,
         },
       }
 
@@ -126,7 +124,7 @@ return {
         tailwindcss = require 'egreb.lspconfig.tailwindcss',
         biome = require 'egreb.lspconfig.biome',
         emmet_language_server = require 'egreb.lspconfig.emmet',
-        harper_ls = {},
+        harper_ls = require 'egreb.lspconfig.harper',
       }
       local capabilities = require('blink.cmp').get_lsp_capabilities()
       local ensure_installed = vim.tbl_keys(servers or {})

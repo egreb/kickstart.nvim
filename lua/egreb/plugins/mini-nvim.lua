@@ -19,15 +19,5 @@ return { -- Collection of various small independent plugins/modules
     require('mini.surround').setup()
     require('mini.indentscope').setup()
     require('mini.move').setup()
-    require('mini.statusline').setup {
-      content = {
-        active = function()
-          return MiniStatusline.section_filename { trunc_width = 120 }
-        end,
-        inactive = function()
-          return MiniStatusline.section_filename { trunc_width = 120 }
-        end,
-      },
-    }
   end,
 }

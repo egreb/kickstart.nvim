@@ -5,7 +5,7 @@ return {
     local has_biome = util.root_pattern('biome.json', 'biome.jsonc')(fname)
 
     if has_biome then
-      return util.root_pattern '.git'(fname)
+      return has_biome
     end
 
     return nil -- prevent LSP from starting
