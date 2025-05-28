@@ -125,6 +125,7 @@ return {
         biome = require 'egreb.lspconfig.biome',
         emmet_language_server = require 'egreb.lspconfig.emmet',
         harper_ls = require 'egreb.lspconfig.harper',
+        elixirls = {},
       }
       local capabilities = require('blink.cmp').get_lsp_capabilities()
       local ensure_installed = vim.tbl_keys(servers or {})

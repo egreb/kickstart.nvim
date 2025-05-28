@@ -1,6 +1,31 @@
 return {
-  'wtfox/jellybeans.nvim',
-  lazy = false,
-  priority = 1000,
-  opts = { transparent = false, flat_ui = true },
+  {
+    'sainnhe/gruvbox-material',
+    enabled = true,
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    init = function()
+      vim.g.gruvbox_material_background = 'hard'
+      vim.g.gruvbox_material_transparent_background = true
+      vim.cmd.colorscheme 'gruvbox-material'
+    end,
+  },
+  {
+    'rose-pine/neovim',
+    name = 'rose-pine',
+    enabled = true,
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('rose-pine').setup {
+        styles = {
+          transparency = true,
+        },
+      }
+    end,
+    init = function()
+      -- vim.cmd.colorscheme("rose-pine")
+    end,
+  },
 }
