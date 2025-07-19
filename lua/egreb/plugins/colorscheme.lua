@@ -1,31 +1,31 @@
 return {
   {
-    'sainnhe/gruvbox-material',
-    enabled = true,
-    lazy = false,
-    priority = 1000,
-    opts = {},
-    init = function()
-      vim.g.gruvbox_material_background = 'hard'
-      vim.g.gruvbox_material_transparent_background = true
-      vim.cmd.colorscheme 'gruvbox-material'
-    end,
-  },
-  {
-    'rose-pine/neovim',
-    name = 'rose-pine',
-    enabled = true,
-    lazy = false,
+    'EdenEast/nightfox.nvim',
+    name = 'nightfox',
     priority = 1000,
     config = function()
-      require('rose-pine').setup {
-        styles = {
-          transparency = true,
+      require('nightfox').setup {
+        options = {
+          dim_inactive = true,
         },
       }
     end,
-    init = function()
-      -- vim.cmd.colorscheme("rose-pine")
-    end,
+    dependencies = {
+      {
+        'afonsofrancof/OSC11.nvim',
+        opts = {
+          -- Function to call when switching to dark theme
+          on_dark = function()
+            vim.opt.background = 'dark'
+            vim.cmd 'colorscheme nordfox'
+          end,
+          -- Function to call when switching to light theme
+          on_light = function()
+            vim.opt.background = 'light'
+            vim.cmd 'colorscheme dayfox'
+          end,
+        },
+      },
+    },
   },
 }

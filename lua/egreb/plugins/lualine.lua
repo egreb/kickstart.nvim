@@ -32,12 +32,12 @@ end
 return {
   'nvim-lualine/lualine.nvim',
   config = function()
-    local Get_hl_hex = require('egreb.config.hls').Get_hls_value
-    local colors = {
-      white = Get_hl_hex('PreProc', 'fg'),
-      border = Get_hl_hex('Conceal', 'fg'),
-      background = Get_hl_hex('StatusLineNc', 'bg'),
-    }
+    -- local Get_hl_hex = require('egreb.config.hls').Get_hls_value
+    -- local colors = {
+    --   white = Get_hl_hex('PreProc', 'fg'),
+    --   border = Get_hl_hex('Conceal', 'fg'),
+    --   background = Get_hl_hex('StatusLineNc', 'bg'),
+    -- }
     require('lualine').setup {
       inactive_sections = {
         lualine_a = {},
@@ -81,13 +81,13 @@ return {
         disabled_filetypes = { 'alpha' },
         component_separators = ' │ ',
         section_separators = '',
-        theme = {
-          normal = {
-            a = { bg = colors.background, fg = colors.white },
-            b = { bg = colors.background, fg = colors.white },
-            c = { bg = colors.background, fg = colors.white },
-          },
-        },
+        -- theme = {
+        --   normal = {
+        --     a = { bg = colors.background, fg = colors.white },
+        --     b = { bg = colors.background, fg = colors.white },
+        --     c = { bg = colors.background, fg = colors.white },
+        --   },
+        -- },
       },
 
       extensions = {

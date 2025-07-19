@@ -186,7 +186,14 @@ return {
     notifier = { enabled = false },
     statuscolumn = { enabled = true },
     scratch = { enabled = true },
-    lazygit = { enabled = true },
+    lazygit = {
+      enabled = true,
+      configure = true,
+      win = {
+        style = 'lazygit',
+      },
+      selectedLineBgColor = { bg = '#333' },
+    },
     git = {
       width = 0.6,
       height = 0.6,
