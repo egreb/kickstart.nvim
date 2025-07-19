@@ -13,7 +13,7 @@ return {
       completion = {
         menu = { border = 'single', auto_show = true },
         documentation = {
-          auto_show = true,
+          auto_show = false,
           auto_show_delay_ms = 500,
           window = { border = 'single' },
         },
@@ -22,9 +22,21 @@ return {
         },
       },
       signature = { window = { border = 'single' } },
+      sources = {
+        default = {
+          'lsp',
+          'path',
+          'snippets',
+          'buffer',
+        },
+        per_filetype = {
+          sql = { 'snippets', 'dadbod', 'buffer' },
+        },
+        -- add vim-dadbod-completion to your completion providers
+        providers = {
+          dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
+        },
+      },
     },
-    -- allows extending the providers array elsewhere in your config
-    -- without having to redefine it
-    opts_extend = { 'sources.default' },
   },
 }
