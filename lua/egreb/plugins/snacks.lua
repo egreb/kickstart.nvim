@@ -204,5 +204,6 @@ return {
         },
       },
     },
+    bufdelete = {},
   },
 }
