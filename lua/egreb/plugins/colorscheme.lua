@@ -1,12 +1,11 @@
 return {
   {
-    'EdenEast/nightfox.nvim',
-    name = 'nightfox',
+    'olimorris/onedarkpro.nvim',
     priority = 1000,
     config = function()
-      require('nightfox').setup {
+      require('onedarkpro').setup {
         options = {
-          dim_inactive = true,
+          highlight_inactive_windows = false,
         },
       }
     end,
@@ -17,12 +16,12 @@ return {
           -- Function to call when switching to dark theme
           on_dark = function()
             vim.opt.background = 'dark'
-            vim.cmd 'colorscheme nordfox'
+            vim.cmd 'colorscheme onedark'
           end,
           -- Function to call when switching to light theme
           on_light = function()
             vim.opt.background = 'light'
-            vim.cmd 'colorscheme dayfox'
+            vim.cmd 'colorscheme onelight'
           end,
         },
       },

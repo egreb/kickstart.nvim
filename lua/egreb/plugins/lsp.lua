@@ -1,3 +1,7 @@
+-- Inspired by kickstart
+-- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
+--
+-- LSP Plugins
 return {
   {
     'folke/lazydev.nvim',
@@ -8,43 +12,46 @@ return {
     },
   },
   {
+    -- Main LSP Configuration
     'neovim/nvim-lspconfig',
     dependencies = {
-      { 'williamboman/mason.nvim', opts = {} },
-      'williamboman/mason-lspconfig.nvim',
+      -- Automatically install LSPs and related tools to stdpath for Neovim
+      -- Mason must be loaded before its dependents so we need to set it up here.
+      -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
+      { 'mason-org/mason.nvim', opts = {} },
+      'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
+
       -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
+
+      -- Allows extra capabilities provided by blink.cmp
       'saghen/blink.cmp',
     },
     config = function()
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
-          -- NOTE: Remember that Lua is a real programming language, and as such it is possible
-          -- to define small helper and utility functions so you don't have to repeat yourself.
-          --
-          -- In this case, we create a function that lets us more easily define mappings specific
-          -- for LSP related items. It sets the mode, buffer and description for us each time.
-          local map = function(keys, func, desc)
-            vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+          local map = function(keys, func, desc, mode)
+            mode = mode or 'n'
+            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
-
-          -- Rename the variable under your cursor.
-          --  Most Language Servers support renaming across files, etc.
-          map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-
-          -- Execute a code action, usually your cursor needs to be on top of an error
-          -- or a suggestion from your LSP for this to activate.
-          map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-
-          -- Opens a popup that displays documentation about the word under your cursor
-          --  See `:help K` for why this keymap.
-          map('K', vim.lsp.buf.hover, 'Hover Documentation')
-
-          -- WARN: This is not Goto Definition, this is Goto Declaration.
-          --  For example, in C this would take you to the header.
-          map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+          -- rename
+          map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
+          -- go to action
+          map('gra', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
+          -- find references
+          map('grr', Snacks.picker.lsp_references, '[G]oto [R]eferences')
+          -- jump to implementation
+          map('gri', Snacks.picker.lsp_implementations, '[G]oto [I]mplementation')
+          -- jump to decleration
+          map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+          -- list symbols (variables, functions etc..)
+          map('gO', function()
+            Snacks.picker.lsp_symbols { layout = { preset = 'vscode', preview = 'main' } }
+          end, 'Open Document Symbols')
+          -- go to definition
+          map('grt', Snacks.picker.lsp_type_definitions, '[G]oto [T]ype Definition')
 
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client
@@ -59,6 +66,11 @@ return {
             end
           end
 
+          -- The following two autocommands are used to highlight references of the
+          -- word under your cursor when your cursor rests there for a little while.
+          --    See `:help CursorHold` for information about when this is executed
+          --
+          -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
@@ -82,9 +94,14 @@ return {
               end,
             })
           end
-          if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+
+          -- The following code creates a keymap to toggle inlay hints in your
+          -- code, if the language server you are using supports them
+          --
+          -- This may be unwanted, since they displace some of your code
+          if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
             map('<leader>th', function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
             end, '[T]oggle Inlay [H]ints')
           end
         end,
@@ -93,41 +110,95 @@ return {
       -- Diagnostic Config
       -- See :help vim.diagnostic.Opts
       vim.diagnostic.config {
-        virtual_text = {
-          enabled = true,
-          prefix = function(diagnostic)
-            if diagnostic.severity == vim.diagnostic.severity.ERROR then
-              return '🭰󰅚 '
-            elseif diagnostic.severity == vim.diagnostic.severity.WARN then
-              return '🭰▲ '
-            else
-              return '🭰• '
-            end
-          end,
-          suffix = '🭵',
-        },
-        underline = true,
-        signs = {
+        severity_sort = true,
+        float = { border = 'rounded', source = 'if_many' },
+        underline = { severity = vim.diagnostic.severity.ERROR },
+        signs = vim.g.have_nerd_font and {
           text = {
             [vim.diagnostic.severity.ERROR] = '󰅚 ',
             [vim.diagnostic.severity.WARN] = '󰀪 ',
             [vim.diagnostic.severity.INFO] = '󰋽 ',
             [vim.diagnostic.severity.HINT] = '󰌶 ',
           },
+        } or {},
+        virtual_text = {
+          source = 'if_many',
+          spacing = 2,
+          format = function(diagnostic)
+            local diagnostic_message = {
+              [vim.diagnostic.severity.ERROR] = diagnostic.message,
+              [vim.diagnostic.severity.WARN] = diagnostic.message,
+              [vim.diagnostic.severity.INFO] = diagnostic.message,
+              [vim.diagnostic.severity.HINT] = diagnostic.message,
+            }
+            return diagnostic_message[diagnostic.severity]
+          end,
         },
       }
 
-      local servers = {
-        lua_ls = require 'egreb.lspconfig.lua',
-        ts_ls = require 'egreb.lspconfig.typescript',
-        gopls = require 'egreb.lspconfig.go',
-        tailwindcss = require 'egreb.lspconfig.tailwindcss',
-        biome = require 'egreb.lspconfig.biome',
-        emmet_language_server = require 'egreb.lspconfig.emmet',
-        harper_ls = require 'egreb.lspconfig.harper',
-        elixirls = {},
-      }
       local capabilities = require('blink.cmp').get_lsp_capabilities()
+
+      -- lsp servers
+      local servers = {
+        lua_ls = {
+          settings = {
+            Lua = {
+              completion = {
+                callSnippet = 'Replace',
+              },
+            },
+          },
+        },
+        gopls = {
+          Settings = {
+            gopls = {
+              analyses = {
+                nilness = true,
+                unusedparams = true,
+                unusedwrite = true,
+                useany = true,
+                unusedvariable = true,
+              },
+              staticcheck = true,
+              completeUnimported = true,
+              experimentalPostfixCompletions = true,
+              usePlaceholders = true,
+              hints = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                compositeLiteralTypes = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
+              },
+            },
+          },
+        },
+        ts_ls = {
+          cmd = { 'typescript-language-server', '--stdio' },
+          root_dir = require('lspconfig').util.root_pattern('.git', 'package.json', 'tsconfig.json', 'jsconfig.json'),
+          single_file_support = true,
+          settings = {
+            Lua = {
+              completion = {
+                callSnippet = 'Replace',
+              },
+            },
+          },
+          init_options = {
+            plugins = {
+              {
+                name = 'bun',
+                location = vim.fn.expand '$HOME/.bun',
+                enable = true,
+              },
+            },
+          },
+        },
+        tailwindcss = require 'egreb.lspconfig.tailwindcss',
+      }
+
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
