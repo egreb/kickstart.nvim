@@ -10,6 +10,16 @@ return {
     'DBUIAddConnection',
     'DBUIFindBuffer',
   },
+  keys = {
+    {
+      '<leader>dt',
+      function()
+        vim.cmd 'DBUIToggle'
+      end,
+      mode = '',
+      desc = '[D]B [T]oggle',
+    },
+  },
   init = function()
     -- Your DBUI configuration
     vim.g.db_ui_use_nerd_fonts = 1

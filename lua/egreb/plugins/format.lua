@@ -28,6 +28,8 @@ return { -- Autoformat
       javascriptreact = { 'prettier' },
       astro = { 'prettier' },
       go = { 'goimports', 'gofmt' },
+      yaml = { 'prettier' },
+      yml = { 'prettier' },
     },
   },
 }

@@ -58,8 +58,9 @@ return {
       '<leader>sg',
       function()
         Snacks.picker.grep {
+          finder = 'grep',
           exclude = { 'node_modules/' },
-          regex = false,
+          regex = true,
         }
       end,
       desc = 'Grep',
@@ -115,13 +116,13 @@ return {
       end,
       desc = 'Goto T[y]pe Definition',
     },
-    -- {
-    --   '<leader>sc',
-    --   function()
-    --     Snacks.picker.resume()
-    --   end,
-    --   desc = 'Resume',
-    -- },
+    {
+      '<leader>sc',
+      function()
+        Snacks.picker.resume()
+      end,
+      desc = 'Resume',
+    },
     {
       '<leader>sd',
       function()
