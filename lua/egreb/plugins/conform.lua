@@ -29,6 +29,7 @@ return { -- Autoformat
 			end
 		end,
 		formatters_by_ft = {
+			html = { 'prettier' },
 			css = { 'prettier' },
 			json = { 'prettier' },
 			javascript = { 'prettier' },
@@ -36,6 +37,7 @@ return { -- Autoformat
 			typescriptreact = { 'prettier' },
 			javascriptreact = { 'prettier' },
 			go = { 'goimports', 'gofmt' },
+			templ = { 'goimports', 'gofmt' },
 			yaml = { 'prettier' },
 			yml = { 'prettier' },
 		},

@@ -13,8 +13,8 @@ rtp:prepend(lazypath)
 
 require("lazy").setup({
 	spec = {
-		-- import your plugins
 		{ import = "egreb.plugins" },
 	},
-	checker = { enable = false }
+	install = { missing = false },
+	change_detection = { enabled = true, notify = false },
 })

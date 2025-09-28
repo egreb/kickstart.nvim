@@ -4,50 +4,39 @@ return {
 		{ 'mason-org/mason.nvim', opts = {} },
 		'mason-org/mason-lspconfig.nvim',
 		'WhoIsSethDaniel/mason-tool-installer.nvim',
-		'saghen/blink.cmp',
+		{
+			'saghen/blink.cmp',
+			version = "1.*"
+		},
 	},
 	config = function()
-		local capabilities = require('blink.cmp').get_lsp_capabilities()
-		local servers = {
-			zk = {}, -- note taking system
-			lua_ls = {},
-			ts_ls = {
-				root_dir = require("lspconfig").util.root_pattern({ "package.json",
-					"tsconfig.json" }),
-				single_file_support = false,
-				settings = {},
-			},
-			gopls = {},
-			tailwindcss = {},
-			denols = {
-				deno = {
-					enable = true,
-					root_dir = require("lspconfig").util.root_pattern({ "deno.json", "deno.jsonc" }),
-					single_file_support = false,
-					settings = {},
-				}
-			}
-		}
-
-		vim.lsp.config('denols', {
+		vim.lsp.config('emmet_language_server', {
 			settings = {
-				deno = {
-					enable = false,
-					root_markers = { "deno.json", "deno.jsonc" },
-					single_file_support = false,
-				}
+				cmd = { 'emmet-language-server', '--stdio' },
+				filetypes = {
+					'css',
+					'html',
+					'javascript',
+					'javascriptreact',
+					'typescript',
+					'typescriptreact',
+					'tmpl',
+					'liquid',
+				},
+				init_options = {
+					excludeLanguages = {},
+					preferences = {},
+					showAbbreviationSuggestions = true,
+					showExpandedAbbreviation = 'always',
+					showSuggestionsAsSnippets = true, -- important
+					syntaxProfiles = {},
+					variables = {},
+				},
 			}
 		})
-		vim.lsp.enable({ 'denols', 'ts_ls', 'zk', 'lua_ls', 'tailwindcss', 'gopls' })
+		vim.lsp.config('jsonls', {})
 
-		vim.api.nvim_create_autocmd("LspAttach", {
-			callback = function(event)
-				local client = vim.lsp.get_client_by_id(event.data.client_id)
-				if client:supports_method("textDocument/completion") then
-					vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
-				end
-			end,
-		})
+		vim.lsp.enable({ 'ts_ls', 'zk', 'lua_ls', 'tailwindcss', 'gopls', 'emmet_language_server', 'jsonls' })
 		vim.cmd("set completeopt+=noselect")
 	end,
 }
