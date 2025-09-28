@@ -17,9 +17,9 @@ return {
 			prompt = ' ',
 			ui_select = true,
 			layout = {
-				fullscreen = true,
+				-- fullscreen = true,
 				cycle = true,
-				preset = 'vertical',
+				preset = 'center',
 				-- preset = function()
 				-- 	return 'vertical'
 				-- end,
@@ -102,6 +102,11 @@ return {
 					finder = 'grep',
 					exclude = { 'node_modules/' },
 					regex = true,
+					hidden = true,
+					layout = {
+						fullscreen = true,
+						preset = 'vertical',
+					},
 				}
 			end,
 			desc = 'Grep',
@@ -112,6 +117,10 @@ return {
 				Snacks.picker.files {
 					exclude = { 'node_modules' },
 					hidden = true,
+					layout = {
+						fullscreen = true,
+						preset = 'vertical',
+					},
 				}
 			end,
 			desc = 'Find Files',
