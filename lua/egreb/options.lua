@@ -43,34 +43,3 @@ vim.o.confirm          = true
 vim.opt.smoothscroll   = true
 vim.opt.foldexpr       = "v:lua.require'lazyvim.util'.ui.foldexpr()"
 vim.opt.foldtext       = ""
--- Diagnostic Config
--- See :help vim.diagnostic.Opts
-vim.diagnostic.config {
-	severity_sort = true,
-	float = { border = 'rounded', source = 'if_many' },
-	underline = { severity = vim.diagnostic.severity.ERROR },
-	signs = vim.g.have_nerd_font and {
-		text = {
-			[vim.diagnostic.severity.ERROR] = '󰅚 ',
-			[vim.diagnostic.severity.WARN] = '󰀪 ',
-			[vim.diagnostic.severity.INFO] = '󰋽 ',
-			[vim.diagnostic.severity.HINT] = '󰌶 ',
-		},
-	} or {},
-	virtual_text = {
-		source = 'if_many',
-		spacing = 2,
-		format = function(diagnostic)
-			local diagnostic_message = {
-				[vim.diagnostic.severity.ERROR] = diagnostic.message,
-				[vim.diagnostic.severity.WARN] = diagnostic.message,
-				[vim.diagnostic.severity.INFO] = diagnostic.message,
-				[vim.diagnostic.severity.HINT] = diagnostic.message,
-			}
-			return diagnostic_message[diagnostic.severity]
-		end,
-	},
-}
-
--- Define a highlight group with only underline
-vim.api.nvim_set_hl(0, "DiagnosticLineUnderline", { underline = true, sp = "#3f0000" })
