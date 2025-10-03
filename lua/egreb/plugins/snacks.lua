@@ -19,7 +19,7 @@ return {
 			layout = {
 				-- fullscreen = true,
 				cycle = true,
-				preset = 'center',
+				-- preset = 'center',
 				-- preset = function()
 				-- 	return 'vertical'
 				-- end,
