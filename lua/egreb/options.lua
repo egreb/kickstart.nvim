@@ -41,5 +41,8 @@ vim.o.scrolloff        = 10
 -- See `:help 'confirm'`
 vim.o.confirm          = true
 vim.opt.smoothscroll   = true
-vim.opt.foldexpr       = "v:lua.require'lazyvim.util'.ui.foldexpr()"
 vim.opt.foldtext       = ""
+vim.wo.foldmethod      = 'expr'
+vim.wo.foldexpr        = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldlevel      = 99
+vim.opt.foldlevelstart = 1

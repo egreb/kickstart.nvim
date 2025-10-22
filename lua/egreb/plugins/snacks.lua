@@ -124,7 +124,6 @@ return {
 					regex = true,
 					hidden = true,
 					layout = {
-						fullscreen = true,
 						preset = 'vertical',
 					},
 				}
@@ -138,7 +137,6 @@ return {
 					exclude = { 'node_modules' },
 					hidden = true,
 					layout = {
-						fullscreen = true,
 						preset = 'vertical',
 					},
 				}
@@ -158,18 +156,18 @@ return {
 			desc = 'Recent',
 		},
 		{
-			'<leader>sr"',
+			'<leader>sr',
 			function()
 				Snacks.picker.registers()
 			end,
 			desc = 'Registers',
 		},
 		{
-			'gd',
+			'<leader>so',
 			function()
-				Snacks.picker.lsp_definitions()
+				Snacks.picker.lsp_symbols()
 			end,
-			desc = 'Goto Definition',
+			desc = 'List functions and variables',
 		},
 		{
 			'<leader>sw',
@@ -179,13 +177,13 @@ return {
 			nowait = true,
 			desc = 'Grep Word',
 		},
-		{
-			'gy',
-			function()
-				Snacks.picker.lsp_type_definitions()
-			end,
-			desc = 'Goto T[y]pe Definition',
-		},
+		-- {
+		-- 	'<leader>so',
+		-- 	function()
+		-- 		Snacks.picker.lsp_type_definitions()
+		-- 	end,
+		-- 	desc = 'List definitions',
+		-- },
 		{
 			'<leader>sc',
 			function()
@@ -207,5 +205,13 @@ return {
 		{ "<leader>ss", function() Snacks.picker.lsp_symbols() end,           desc = "LSP Symbols" },
 		{ "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
 		{ "<leader>gr", function() Snacks.picker.lsp_references() end,        nowait = true,                 desc = "References" },
+		{
+			'gd',
+			function()
+				Snacks.picker.lsp_definitions()
+			end,
+			desc = 'Goto Definition',
+		},
+
 	}
 }
