@@ -41,45 +41,5 @@ return { -- Autoformat
 			yaml = { 'prettier' },
 			yml = { 'prettier' },
 		},
-		-- config = function(_, opts)
-		-- 	require("conform").setup(opts)
-		--
-		-- 	-- Dynamic formatter selection
-		-- 	local original_formatters_by_ft = vim.deepcopy(opts.formatters_by_ft or {})
-		--
-		-- 	-- Override JavaScript/TypeScript formatters based on project type
-		-- 	local function update_formatters()
-		-- 		local util = require("conform.util")
-		-- 		local root_files = { "deno.json", "deno.jsonc", "package.json" }
-		-- 		local root_dir = util.root_file(root_files)
-		--
-		-- 		local is_deno_project = root_dir and
-		-- 		    (vim.fn.filereadable(root_dir .. "/deno.json") == 1 or vim.fn.filereadable(root_dir .. "/deno.jsonc") == 1)
-		--
-		-- 		local formatters_by_ft = vim.deepcopy(original_formatters_by_ft)
-		--
-		-- 		if is_deno_project then
-		-- 			formatters_by_ft.typescript = { "deno_fmt" }
-		-- 			formatters_by_ft.javascript = { "deno_fmt" }
-		-- 			formatters_by_ft.typescriptreact = { "deno_fmt" }
-		-- 			formatters_by_ft.javascriptreact = { "deno_fmt" }
-		-- 		else
-		-- 			formatters_by_ft.typescript = { "prettierd" }
-		-- 			formatters_by_ft.javascript = { "prettierd" }
-		-- 			formatters_by_ft.typescriptreact = { "prettierd" }
-		-- 			formatters_by_ft.javascriptreact = { "prettierd" }
-		-- 		end
-		--
-		-- 		require("conform").formatters_by_ft = formatters_by_ft
-		-- 	end
-		--
-		-- 	-- Update formatters when opening a new buffer or changing directories
-		-- 	vim.api.nvim_create_autocmd({ "BufEnter", "DirChanged" }, {
-		-- 		callback = update_formatters,
-		-- 	})
-		--
-		-- 	-- Initial update
-		-- 	update_formatters()
-		-- end,
 	},
 }
