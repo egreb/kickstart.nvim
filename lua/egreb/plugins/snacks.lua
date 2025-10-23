@@ -177,13 +177,6 @@ return {
 			nowait = true,
 			desc = 'Grep Word',
 		},
-		-- {
-		-- 	'<leader>so',
-		-- 	function()
-		-- 		Snacks.picker.lsp_type_definitions()
-		-- 	end,
-		-- 	desc = 'List definitions',
-		-- },
 		{
 			'<leader>sc',
 			function()
