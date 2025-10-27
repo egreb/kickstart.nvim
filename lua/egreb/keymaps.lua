@@ -20,6 +20,7 @@ map('n', ']b', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
 map('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
 map('n', '<leader>`', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
 map('n', '<leader>bd', function()
+	-- @Snacks
 	Snacks.bufdelete()
 end, { desc = 'Delete Buffer' })
 map('n', '<leader>bo', function()
@@ -61,29 +62,39 @@ end)
 -- Picker keymaps
 -- find files
 map({ 'n' }, '<leader>ff', function()
-	require('mini.pick').builtin.files()
+	Snacks.picker.smart()
 end, { desc = '[F]ind [F]iles' })
 -- grep files
 map({ 'n' }, '<leader>fg', function()
-	require('mini.pick').builtin.grep_live()
+	Snacks.picker.grep()
 end, { desc = '[G]rep [F]iles' })
 -- resume previous search
-map({ 'n' }, '<leader>f.', function()
-	require('mini.pick').builtin.resume()
+map({ 'n' }, '<leader>fr', function()
+	Snacks.picker.resume()
 end, { desc = '[R]esume [S]earch' })
+
 -- list buffers
 map({ 'n' }, '<leader><leader>', function()
-	require('mini.pick').builtin.buffers()
+	Snacks.picker.buffers()
 end, { desc = '[F]ind [B]uffers' })
+
 -- search history
 map({ 'n' }, '<leader>fh', function()
-	require('mini.extra').pickers.history { scope = '/' }
+	Snacks.picker.search_history {
+		cwd = '/',
+	}
 end, { desc = 'Search [H]istory' })
 -- diagnostics
 map({ 'n' }, '<leader>fd', function()
-	require('mini.extra').pickers.diagnostic() {}
+	Snacks.picker.diagnostics()
 end, { desc = 'Find [D]iagnostic' })
 -- old files
 map({ 'n' }, '<leader>fo', function()
-	require('mini.extra').pickers.oldfiles() {}
+	Snacks.picker.recent {
+		cwd = true,
+	}
 end, { desc = '[O]ld Files' })
+-- search word under cursor
+map({ 'n' }, '<leader>fw', function()
+	Snacks.picker.grep_word()
+end, { desc = 'Visual selection or word' })

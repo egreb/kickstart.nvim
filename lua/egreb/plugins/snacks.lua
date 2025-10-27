@@ -3,7 +3,12 @@ return {
 	priority = 1000,
 	lazy = false,
 	opts = {
-		explorer = {},
+		picker = {
+			enabled = true,
+		},
+		explorer = {
+			enabled = true,
+		},
 		input = {
 			enabled = true,
 			icon = ' ',
@@ -26,6 +31,7 @@ return {
 		bufdelete = {},
 
 	},
+
 
 	keys = {
 		{
@@ -71,6 +77,5 @@ return {
 			end,
 			'[T]oggle [T]erminal',
 		},
-
 	}
 }
