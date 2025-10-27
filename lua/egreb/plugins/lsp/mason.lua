@@ -10,7 +10,8 @@ return {
 				"tailwindcss",
 				"lua_ls",
 				"emmet_ls",
-				"jsonls"
+				"jsonls",
+				"bashls"
 			},
 		},
 		dependencies = {
