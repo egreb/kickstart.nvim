@@ -29,35 +29,7 @@ end, { desc = 'Delete Other Buffers' })
 map('n', '<leader>bD', '<cmd>:bd<cr>', { desc = 'Delete Buffer and Window' })
 
 -- multicursor keybindings
--- TODO: Make these better
-map({ 'v', 'n' }, '<leader>lm', function()
-	require('multicursor-nvim').fromVisual()
-end)
-map({ 'v', 'n' }, '<leader>la', function()
-	require('multicursor-nvim').lineAddCursor(-1)
-end)
-map({ 'v', 'n' }, '<leader>lA', function()
-	require('multicursor-nvim').lineAddCursor(1)
-end)
-map({ 'v', 'n' }, '<leader>ln', function()
-	require('multicursor-nvim').matchAddCursor(1)
-end)
-map({ 'v', 'n' }, '<leader>lN', function()
-	require('multicursor-nvim').matchAddCursor(-1)
-end)
-map({ 'v', 'n' }, '<leader>lS', function()
-	require('multicursor-nvim').matchSkipCursor(-1)
-end)
-map({ 'v', 'n' }, '<leader>lq', function()
-	local mc = require 'multicursor-nvim'
-	if not mc.cursorsEnabled() then
-		mc.enableCursors()
-	elseif mc.hasCursors() then
-		mc.clearCursors()
-	else
-		-- Default <esc> handler.
-	end
-end)
+-- See plugin
 
 -- Picker keymaps
 -- find files
