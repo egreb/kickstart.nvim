@@ -34,39 +34,37 @@ map('n', '<leader>bD', '<cmd>:bd<cr>', { desc = 'Delete Buffer and Window' })
 -- Picker keymaps
 -- find files
 map({ 'n' }, '<leader>ff', function()
-	Snacks.picker.smart()
+	Snacks.picker.smart {
+		cwd = true,
+	}
 end, { desc = '[F]ind [F]iles' })
 -- grep files
 map({ 'n' }, '<leader>fg', function()
-	Snacks.picker.grep()
+	Snacks.picker.grep { cwd = true }
 end, { desc = '[G]rep [F]iles' })
 -- resume previous search
 map({ 'n' }, '<leader>fr', function()
-	Snacks.picker.resume()
+	Snacks.picker.resume { cwd = true }
 end, { desc = '[R]esume [S]earch' })
 
 -- list buffers
 map({ 'n' }, '<leader><leader>', function()
-	Snacks.picker.buffers()
+	Snacks.picker.buffers { cwd = true }
 end, { desc = '[F]ind [B]uffers' })
 
 -- search history
-map({ 'n' }, '<leader>fh', function()
-	Snacks.picker.search_history {
-		cwd = '/',
-	}
+map({ 'n' }, '<leader>f.', function()
+	Snacks.picker.search_history { cwd = true }
 end, { desc = 'Search [H]istory' })
 -- diagnostics
 map({ 'n' }, '<leader>fd', function()
-	Snacks.picker.diagnostics()
+	Snacks.picker.diagnostics { cwd = true }
 end, { desc = 'Find [D]iagnostic' })
 -- old files
 map({ 'n' }, '<leader>fo', function()
-	Snacks.picker.recent {
-		cwd = true,
-	}
+	Snacks.picker.recent { cwd = true }
 end, { desc = '[O]ld Files' })
 -- search word under cursor
 map({ 'n' }, '<leader>fw', function()
-	Snacks.picker.grep_word()
+	Snacks.picker.grep_word { cwd = true }
 end, { desc = 'Visual selection or word' })

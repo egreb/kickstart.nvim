@@ -5,6 +5,10 @@ return {
 	opts = {
 		picker = {
 			enabled = true,
+			preset = 'ivy',
+			layout = {
+				position = 'bottom',
+			}
 		},
 		explorer = {
 			enabled = true,
@@ -29,10 +33,7 @@ return {
 		},
 		gitbrowse = { enabled = true },
 		bufdelete = {},
-
 	},
-
-
 	keys = {
 		{
 			'<leader>nn',
@@ -77,5 +78,6 @@ return {
 			end,
 			'[T]oggle [T]erminal',
 		},
+
 	}
 }
