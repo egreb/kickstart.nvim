@@ -11,7 +11,8 @@ return {
 				"lua_ls",
 				"emmet_ls",
 				"jsonls",
-				"bashls"
+				"bashls",
+				"vue_ls"
 			},
 		},
 		dependencies = {
