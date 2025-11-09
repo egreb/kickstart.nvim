@@ -36,7 +36,13 @@ return {
 			ghost_text = { enabled = false },
 		},
 		sources = {
-			default = { 'lsp', 'path', 'buffer' },
+			default = { 'lsp', 'path', 'buffer', 'snippets' },
+			per_filetype = {
+				sql = { 'snippets', 'dadbod', 'buffer' },
+			},
+			providers = {
+				dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
+			},
 		},
 	},
 }
